@@ -1,0 +1,225 @@
+Introduction of java
+_____________________
+1.write a java program that declare four integer variables a,b,c and d then write an if statement that checks sum of a and b greater than
+the sum of c and d. If the condition is true,the program should output a message indicating sum of a and b is greater than c and d.
+
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[]args)
+    {
+    int a=2;
+    int b=5;
+    int c=7;
+    int d=6;
+    System.out.println(a+b);
+    System.out.println(c+d);
+    System.out.println((a+b)<(c+d));
+    if((a+b)<(c+d)){
+        System.out.println("sum of a&b greater than c&d");
+    }else{
+        System.out.println("sum of a&b is not greater than c&d");
+    }
+    
+}
+}
+output:
+7
+13
+true
+sum of a&b greater than c&d
+
+
+
+2.Have a variable store an integer. create an if statement and find if its an even number.
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[]args)
+    {
+    int num ;
+    Scanner sc=new Scanner(System.in);
+    num=sc.nextInt();
+    if(num%2==0){
+        System.out.println("Number is even");
+    }else{
+    System.out.println("Number is odd");
+    }
+    
+}
+}
+
+Output:
+5
+Number is odd
+
+3. Write the program to print the characters from A to z
+
+import java.util.Scanner;
+public class Main {
+  public static void main(String[] args) {
+
+    char i;
+
+    for(i = 'A'; i <= 'Z'; ++i)
+      System.out.print(i + " ");
+    }
+}
+
+output:
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
+
+4.write a java program to get numbers from the user and swap their values
+
+import java.util.Scanner;
+public class Main{
+  public static void main(String[] args) {
+
+     int x, y, t;// x and y are to swap   
+       Scanner sc = new Scanner(System.in);  
+       System.out.println("Enter the value of X and Y");  
+       x = sc.nextInt();  
+       y = sc.nextInt();  
+       System.out.println("before swapping numbers: "+x +"  "+ y);  
+       /*swapping */  
+       t = x;  
+       x = y;  
+       y = t;  
+       System.out.println("After swapping: "+x +"   " + y);  
+       System.out.println();
+  
+    }
+}
+
+Output:
+Enter the value of X and Y
+before swapping numbers: 2  3
+After swapping: 3   2
+
+
+5.check the number is prime or not
+
+import java.util.Scanner;
+public class Main{
+
+  public static void main(String[] args) {
+
+    int num = 29;
+    boolean flag = false;
+    for (int i = 2; i <= num / 2; ++i) {
+      // condition for nonprime number
+      if (num % i == 0) {
+        flag = true;
+        break;
+      }
+    }
+
+    if (!flag)
+      System.out.println(num + " is a prime number.");
+    else
+      System.out.println(num + " is not a prime number.");
+  
+  
+    }
+}
+
+6.Find the factorial number
+
+import java.util.Scanner;
+public class Main{
+
+  public static void main(String[] args) {
+
+    int i,fact=1;  
+  int number=5;//It is the number to calculate factorial    
+  for(i=1;i<=number;i++){    
+      fact=fact*i;    
+  }    
+  System.out.println("Factorial of "+number+" is: "+fact); 
+  
+    }
+}
+
+
+Output:
+Factorial of 5 is: 120
+
+7.print the length of the string
+
+import java.util.Scanner;
+public class Main{
+
+  public static void main(String[] args){
+      
+  
+  
+    String str = "Guvi Geek";
+ 
+        System.out.println("The size of "+ "the String is "+ str.length());
+}
+}
+
+Output:
+The size of the String is 9
+
+8.To print welcome to guvi 10 times
+
+import java.util.Scanner;
+public class Main{
+
+  public static void main(String[] args){
+      for (int i = 0; i < 10; i++) {
+            System.out.println("Welcome to Guvi");
+        }
+
+}
+}
+
+Output:
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+Welcome to Guvi
+9.check whether person is senior citizen or not
+
+
+
+import java.util.Scanner;
+public class Main{
+
+  public static void main(String[] args){
+      Scanner input = new Scanner(System.in);
+        int age;
+
+        System.out.println("Enter your age");
+        age = input.nextInt();
+
+        if (age <= 18) { 
+        System.out.println("You are a child!");
+
+        }
+
+        else if (age < 59 && age > 19) {
+        System.out.println("You are an adult!"); 
+        }
+
+        else if (age >= 60); {
+
+        System.out.println("You are old!");
+
+        }
+  }
+
+}
+
+Enter your age
+You are an adult!
+You are old!
+
+10.
