@@ -1,0 +1,244 @@
+task 3
+Java oops
+1.create a class called person , attributes "name","age". Also create the constructor and getter method 
+for the attributes.
+
+package person;
+import java.util.Scanner;
+
+public class Person {
+	String name;
+	int age;
+	
+	public Person(String name, int age)
+	{  
+	       this.name = name;  
+	       this.age = age;  
+	  }  
+	   void info(){
+	        System.out.println("Name: "+name+" age: "+age);
+	   }  
+
+	public static void main(String[] args) {
+		Person obj1 = new Person("Chitra",20);  
+		Person obj2 = new Person("Negan",23);  
+		obj1.info();  
+		obj2.info();  
+	}
+
+}
+
+output:
+Name: Chitra age: 20
+Name: Negan age: 23
+
+2.create a implementation for a java name employee that represent an employee with attributes
+including id,name,salary. the class includes a method called raisesalary(percent),which updates the salary.
+
+
+package Employee;
+
+public class Employee {
+	private String name;
+	  private int id;
+	  private double salary;
+
+	  public Employee(String name, int id, double salary) {
+	    this.name = name;
+	    this.id = id;
+	    this.salary = salary;
+	  }
+
+	  public String getName() {
+	    return name;
+	  }
+
+	  public void setName(String name) {
+	    this.name = name;
+	  }
+
+	  public int getid() {
+	    return id;
+	  }
+
+	  public void setid(int id) {
+	    this.id = id;
+	  }
+
+	  public double getSalary() {
+	    return salary;
+	  }
+
+	  public void setSalary(double salary) {
+	    this.salary = salary;
+	  }
+
+	  public void raiseSalary(double percentage) {
+	    salary = salary + salary * percentage / 100;
+	  }
+
+	  public void printEmployeeDetails() {
+	    System.out.println("Name: " + name);
+	    System.out.println("id: " + id);
+	    System.out.println("Salary: " + salary);
+	  }
+
+	public static void main(String[] args) {
+		Employee employee1 = new Employee("Frene", 101, 40000);
+	    Employee employee2 = new Employee("andrea", 102, 60000);
+	    System.out.println("\nEmployee Details:");
+	    employee1.printEmployeeDetails();
+	    employee2.printEmployeeDetails();
+
+	    employee1.raiseSalary(12);
+	    employee2.raiseSalary(12);
+	}
+
+}
+
+output:
+Employee Details:
+Name: Frene
+id: 101
+Salary: 40000.0
+Name: andrea
+id: 102
+Salary: 60000.0
+
+3.create a class circle with radius as data member and calculate circumference.
+
+//class
+public class circle {
+	private double radius;
+
+	  public circle(double radius) {
+	    this.radius = radius;
+	  }
+
+	  public double getRadius() {
+	    return radius;
+	  }
+
+	  public void setRadius(double radius) {
+	    this.radius = radius;
+	  }
+
+	 
+	  public double getCircumference() {
+	    return 2 * Math.PI * radius;
+	  }
+	}
+
+//main 
+package circle1;
+
+public class main {
+
+	public static void main(String[] args) {
+		int r = 5;
+	    circle c = new circle(r);
+	    System.out.println("Radius of the circle is " + r);
+	 
+	    System.out.println("The circumference of the circle is " + c.getCircumference());
+	    
+	    
+	    
+	    
+
+	}
+
+}
+ output:
+Radius of the circle is 5
+The circumference of the circle is 31.41592653589793
+
+4.create a account class with balance as data member.create method withdraw and deposit balance.
+
+package account;
+
+public class Account {
+	private String name; 
+	     private double balance; 
+	
+	    // Account constructor 
+     public Account(String name, double balance)
+	     {
+        this.name = name; 
+
+	   if (balance > 0.0)                      
+	           this.balance = balance;
+	     }
+	
+	      // method that deposits (adds)
+	      public void deposit(double depositAmount)                        
+	      {                                                                
+	         if (depositAmount > 0.0)      
+	            balance = balance + depositAmount; 
+     }                                                                
+	
+	      // method returns the account balance
+	      public double getBalance()           
+	     {                                    
+	         return balance;                   
+	      }                                    
+	
+	      // method that sets the name
+	     public void setName(String name)
+	      {
+	         this.name = name;
+	      }
+	
+	      // method that returns the name
+	      public String getName()
+	      {
+	         return name;
+}
+}
+
+package account;
+
+import java.util.Scanner;
+
+public class Accounttest {
+
+	public static void main(String[] args) {
+		Account account1 = new Account("Jasmine", 500.00); 
+		       Account account2 = new Account("anu", 7000.00);  
+		
+		        // display initial balance of each object
+		         System.out.printf(" balance:",
+		            account1.getName(), account1.getBalance());
+		         System.out.printf(" balance:",
+		            account2.getName(), account2.getBalance());
+		
+		         // create a Scanner 
+		         Scanner input = new Scanner(System.in);
+		        
+		
+		         System.out.println("Enter deposit amount for account1: ");
+		         double depositAmount = input.nextDouble();
+		         System.out.println(depositAmount);
+		         account1.deposit(depositAmount); // add to account's balance  
+		
+		         // display balances
+		         System.out.printf(" balance: ",
+		           account1.getName(), account1.getBalance());
+		        System.out.printf(" balance:",
+		            account2.getName(), account2.getBalance());
+		
+		         System.out.print("Enter deposit amount for account2: ");
+		         depositAmount = input.nextDouble(); // obtain user input
+	             System.out.printf(" to account2",
+		            depositAmount);
+		         account2.deposit(depositAmount); // add to account balance 
+		         input.close();
+		
+		        
+	}
+
+}
+Enter deposit amount for account1: 
+500.0
+Enter deposit amount for account2: 1000
+
+
