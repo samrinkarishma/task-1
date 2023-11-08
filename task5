@@ -1,0 +1,308 @@
+Task 5
+
+Collection
+
+1.Create a package named "com.example.hr" that includes an employee class.the employee class should have
+the following fields.
+name - a string that represent the employees name.
+id - an integer that represents the employee id number.
+salary -a double that represents the employee salary.
+a. the employee class should also have the following methods
+b. public void printnames()-a method that print the employee name
+c. public void printsalary() - a method that print the employee salary.
+d.create a second package named "com.example.hrtest" that includes a class named 
+"Employee test".the employee test class should include a main method that create a instance
+of the employee class, set the employee name and salary
+e.in your main method use the import statement to the import the com.example.hr
+package acces the class.
+f. compile and run your program to verify that if successfully an instance of the employee
+class and call its method to print
+
+package com.example.hr;
+import java.util.Scanner;
+public class employeetest {
+	
+
+	public static void main(String[] args) {
+		
+	//create a list of data
+		
+		employeemain employee1 = new employeemain("Franziska Waltraud", 101, 40000);
+	    employeemain employee2 = new employeemain("Hubertus Andrea", 102, 60000);
+	    System.out.println("\nEmployee Details:");
+	    
+	    //call the method printname
+	    
+	    employee1.printname();
+	    employee2.printname();
+	    
+	    // call the method to print
+	    
+	    employee1.printsalary();
+	    employee2.printsalary();
+
+		
+	   
+	}
+
+}
+
+package com.example.hr;
+
+public class employeemain {
+	
+	//create member private
+  private String name;
+  private int id;
+  private double salary;
+  
+  //create constructor
+  public employeemain (String name,int id,double salary)
+  {
+	  
+	  //set data
+	  this.name=name;
+	  this.id=id;
+	  this.salary=salary;
+	 
+  }
+  
+  //create a getter method
+  public String getname()
+  {
+	  return name;
+	  
+  }
+  public int getid()
+  {
+	  return id;
+  }
+  public double getsalary() 
+  {
+	  return salary;
+	  }
+  public void setsalary(double salary) {
+	  this.salary=salary;
+  }
+//create method for print name of the employee
+  public void printname() {
+	    System.out.println("Name: " + name);
+	    System.out.println("id: " + id);
+	    
+	  }
+  
+  //create method to print salary
+  public void printsalary() {
+	  System.out.println("salary details:" + salary);
+  }
+  }
+ Package com.example.hrtest;
+
+import java.com.example.*;
+
+import com.example.hr.employeemain;
+public class Employee {
+
+	public static void main(String[] args) {
+		//create a list of data
+		
+				employeemain employee1 = new employeemain("Franziska Waltraud", 101, 40000);
+			    employeemain employee2 = new employeemain("Hubertus Andrea", 102, 60000);
+			    System.out.println("\nEmployee Details:");
+			    
+			    //call the method printname
+			    
+			    employee1.printname();
+			    employee2.printname();
+			    
+			    // call the method to print
+			    
+			    employee1.printsalary();
+			    employee2.printsalary();
+
+		
+		
+	}
+
+}
+output:
+Employee Details:
+Name: Gayu
+id: 101
+Name: Andrea
+id: 102
+salary details:40000.0
+salary details:60000.0
+
+
+
+
+
+
+
+2.Write a java program to create array list of string and then remove all the elements in arraylist.
+
+
+package org.employee;
+import java.util.ArrayList;
+
+public class Arraylist {
+
+	public static void main(String[] args) {
+		
+// create arraylist to store data
+		
+		ArrayList<String> empname=new ArrayList<String>();
+		 a string that represent
+		//add the name
+		empname.add("Anu");
+		empname.add("sathya");
+		empname.add("Devi");
+		empname.add("Swapna");
+		empname.add("yamuna");
+		
+		//display the data
+		System.out.println("Employee List"+empname);
+		
+		//remove the employee
+		empname.remove("Devi");
+		System.out.println("Updated list of employee"+empname);
+		
+		//remove all the data
+		empname.clear();
+		System.out.println("list is empty"+empname.isEmpty());
+	}
+
+}
+
+output:
+Employee List[Anu, sathya, Devi, Swapna, yamuna]
+Updated list of employee[Anu, sathya, Swapna, yamuna]
+list is empty
+
+3.Write a java program to create a treemap of employee IDs and Names, and print out the names
+of all the employees in alphabetical order.
+package employee1;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class employee {
+
+	private static String id;
+	private static String name;
+
+	public employee(int i, String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args)throws Exception
+	{
+		// Declaring and initializing a TreeMap
+        TreeMap<employee, String> tm = new TreeMap<employee, String>();
+ 
+        employee e1 = new employee(101, "Pathak");
+ 
+        employee e2 = new employee(102, "Anshu");
+        
+        
+ 
+        // Put method associating specific key-value in Map
+        tm.put(e1, "First");
+        tm.put(e2, "Second");
+ 
+        // Iterating over Map using for-each loop
+        // Map with employee key
+        for (Map.Entry<employee, String> e :
+             tm.entrySet()) {
+ 
+            // Print key-value pairs of TreeMap
+            System.out.println(e.getKey().getId() + " "+ e.getKey().getName() + " "
+                               + e.getValue());
+        }
+    }
+
+	public String getName() {
+		return name;
+	}
+
+	
+
+	public static String getId() {
+		return id;
+	}
+
+}
+
+ackage employee1;
+import Employee.Employee;
+ 
+public class emp implements Comparable<Employee> {
+	//Attributes of object of class
+    int id;
+    String name;
+ 
+    // Parameterized constructor for user-defined class
+    public emp(int id, String name)
+    {
+        // This keyword refers to
+        // current object in a constructor
+        this.id = id;
+        this.name = name;
+    }
+ 
+    // Comparable interface
+    public int compareTo(Employee e)
+    {
+        // Two instance of class can be compared
+        int diff = this.id - e.id;
+ 
+        // Note: Two equal employee Id will return 0
+        return diff;
+    }
+}
+
+101 Pathak First
+102 Anshu Second
+
+ 
+
+4.Write aprogram convert List to array.
+package org.array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Listtoarray {
+
+	public static void main(String[] args) {
+		// Create a new ArrayList of strings.
+        ArrayList<String> list = new ArrayList<String>();
+
+        // Add strings to the ArrayList.
+        list.add("Python");
+        list.add("Java");
+        list.add("PHP");
+        list.add("C#");
+        list.add("C++");
+        list.add("Perl");
+
+        // Create a new string array 
+        String[] my_array = new String[list.size()];
+
+        // Convert the ArrayList 
+        list.toArray(my_array);
+
+        //the elements of the string array and print each element.
+        for (String string : my_array) {
+            System.out.println(string);
+	}
+
+	}
+}
+
+output:
+
+Java
+PHP
+C#
+C++
+Perl
