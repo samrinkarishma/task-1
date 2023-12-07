@@ -1,0 +1,129 @@
+             Selenium Locators
+Task Description:
+
+1 .Write a Selenium script that open the firefox browser, maximize the browser window,navigates to http://google.com, prints the URL of the current page,
+reload the page and closes the browser.
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class Firstscript {
+
+	public static void main(String[] args) {
+		
+		//setup the path of firefoxdriver from local system
+		
+		System.setProperty("WebDriver.firefox.driver", "E://driver//geckodriver");
+		
+		//Launch the firefox browser object
+		WebDriver driver=new FirefoxDriver();
+		
+		//Enter the website url
+		driver.get("https://www.google.co.in/");
+		
+		//get the current url 
+		String Currenturl=driver.getCurrentUrl();
+		System.out.println("The url of the page :" + Currenturl);
+		
+		//reload the page
+		driver.navigate().refresh();
+		
+		//close
+		driver.close();
+
+
+2.Write a Selenium script that opens the Chrome browser, navigates to https://www.demoblaze.com/,maximizws the browser window,
+verifies if the title of the page is “STORE” and prints “Page landed on correct website” if the title matches ,else print “Page landed on correct website”.
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class firstdemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		    //setup the path of chromedriver from local system
+		     System.setProperty("WebDriver.chrome.driver", "E://driver//chromedriver.exe");
+				//Launch the chrome browser object
+				WebDriver driver=new ChromeDriver();
+				
+				//Enter the website url
+				driver.get("https://www.demoblaze.com/");
+				//maximize the window
+				driver.manage().window().maximize();
+				
+				//logic
+				//verify if the title of page is same are not
+				String title = driver.getTitle();
+				System.out.println("The title of the page: " + title);
+				
+				Thread.sleep(5000);
+				
+				//check the website
+				if(driver.getTitle().equals("STORE"))
+				{
+					System.out.println("Page landed on correct website. . .");
+				}
+				else
+				{
+					System.out.println("Page not landed on correct website. .");
+				}
+				
+				driver.quit();
+				
+				}
+	}
+
+3.Write a Selenium script that open the chrome browser, navigates to https://www.wikipedia.org/ maximizes the browser window,
+searches for the query “Artificial intelligence”, clicks on the “History” section in the search results,and prints the title of the section.
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class demo2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		      //setup the path of chromedriver from local system
+				System.setProperty("WebDriver.chrome.driver", "E://driver//chromedriver.exe");
+				
+				//Launch the chrome browser object
+				WebDriver driver=new ChromeDriver();
+						
+				//Enter the website url
+			    driver.get("https://www.wikipedia.org/");
+			    
+			    //maximize the window
+				driver.manage().window().maximize();
+				
+				//search for the query
+				WebElement searchinput=driver.findElement(By.id("searchInput"));
+				searchinput.sendKeys("Artificial Intelligence");
+				
+				Thread.sleep(2000);
+				//click search button
+				WebElement searchbutton=driver.findElement(By.xpath("//i[@class='sprite svg-search-icon']"));
+				searchbutton.click();
+				Thread.sleep(2000);
+				
+				//getting the history 
+				WebElement historytab=driver.findElement(By.id("toc-History"));
+				historytab.click();
+				
+				//title of the page
+				String title = driver.getTitle();
+				System.out.println("The title of the page: " + title);
+						
+				Thread.sleep(5000);
+						
+			     driver.quit();
+
+
+	}
+
+}
+
+		
