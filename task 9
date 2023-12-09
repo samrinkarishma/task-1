@@ -1,0 +1,95 @@
+
+
+                                    Selenium Automation
+Task Description:
+1)	Create a Selenium script for snapdeal Site Login Verification
+Steps to be performed:
+1.open the browser of your choice
+2.Navigate to the snapdeal website
+3.Move the cursor to the sign in button and hold it.
+4.click on the signin button.
+5.Enter the valid emailed in the email id field.
+6.click on the continue button
+7. Enter the valid password in the password field.
+8. Click on the login button
+9.Verify the user is logged in successfully and print the verification page 
+In the console.
+	
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class snapdeal {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		//setup the path of chromedriver from local system
+		System.setProperty("WebDriver.chrome.driver", "E://driver//chromedriver.exe");
+		
+		//Launch the chrome browser object
+		WebDriver driver=new ChromeDriver();
+		
+		//Enter the website url
+		driver.get("https://www.snapdeal.com/");
+		
+		//maximize the window
+		driver.manage().window().maximize();
+		
+		//delete cookies
+		driver.manage().deleteAllCookies();
+		
+		//search for the query
+		WebElement signin=driver.findElement(By.xpath("//span[@class='accountUserName col-xs-12 reset-padding']"));
+		signin.click();
+		
+		
+		
+		WebElement loginbutton=driver.findElement(By.xpath("//a[@href='https://www.snapdeal.com/login']"));
+		loginbutton.click();
+		
+		Thread.sleep(4000);
+		
+		driver.switchTo().frame("loginIframe");
+
+		//enter value for email id
+		WebElement username=driver.findElement(By.xpath("//input[@id='userName']"));
+		username.sendKeys("akramkarish26@gmail.com");
+		
+		Thread.sleep(4000);
+		
+		//click continue button
+		
+		WebElement continuebutton =driver.findElement(By.xpath("//form[@id='commonView']/button"));
+		continuebutton.click();
+		
+		Thread.sleep(3000);		
+		//enter value for password
+		WebElement password=driver.findElement(By.xpath("//*[@id=\"j_password\"]"));
+		password.sendKeys("123456abc");
+		
+		Thread.sleep(3000);
+		
+		WebElement numberfield=driver.findElement(By.xpath("//*[@id=\"j_number\"]"));
+		numberfield.sendKeys("9791024196");
+		
+		WebElement namefield=driver.findElement(By.xpath("//*[@id=\"j_name\"]"));
+		namefield.sendKeys("samrin");
+		
+		//click continue button
+		
+		WebElement signinbutton=driver.findElement(By.xpath("//*[@id=\"userSignup\"]"));
+		signinbutton.click();
+		System.out.println("user is login successfully....");
+		
+		driver.quit();
+		
+		
+		
+
+	}
+
+}
