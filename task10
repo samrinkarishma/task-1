@@ -1,0 +1,151 @@
+               Selenium method and actions
+Task description:
+1)	To automated Facebook Sign up Process using Selenium script.
+Steps to be performed:
+1.Open the Chrome browser
+2. Navigate to the facebook website(https://www.facebook.com/)
+3. Verify the website has been redirected to the facebook homepage.
+4. Click on the create new button
+5. Enter the first name as “test” and last name as “user” in the respective fields.
+6.Enter the valid email id in the Email field.
+7. Enter the strong password in the password field.
+8. Select the date of birth
+9.Select the gender
+10. Click on the signup button.
+11. Verify the user is successfully registered on facebook and redirected on facebook homepage.
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class facebook {
+
+	public static void main(String[] args) throws InterruptedException {
+      
+		//setup the path of chromedriver from local system
+		System.setProperty("WebDriver.chrome.driver", "E://driver//chromedriver.exe");
+		//Launch the chrome browser object
+		WebDriver driver=new ChromeDriver();
+		//Enter the website url
+		driver.get("https://www.facebook.com/");
+		//maximize the window
+		driver.manage().window().maximize();
+		
+		//delete cookies
+		driver.manage().deleteAllCookies();
+		Thread.sleep(2000);
+		
+		//create account
+		WebElement createaccountbutton=driver.findElement(By.xpath("//form/div[5]/a[@role=\"button\"]"));
+		 createaccountbutton.click();
+		 
+		 
+		 Thread.sleep(6000);   
+		 //enter the first name
+		 WebElement firstname=driver.findElement(By.xpath("/html[1]/body[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]"));
+		 firstname.sendKeys("Test");
+		 Thread.sleep(3000);
+		 //enter the sur name
+		 WebElement surname=driver.findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[1]/form/div[1]/div[1]/div[1]/div[2]/div/div[1]/input"));
+		 surname.sendKeys("user");
+		 Thread.sleep(2000);
+		 
+		 //enter the emailid
+		 WebElement email=driver.findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[1]/form/div[1]/div[2]/div/div[1]/input"));
+		 email.sendKeys("akramkarish26@gmail.com");
+		 Thread.sleep(2000);
+		 
+		 //re-enter the emailid
+		 WebElement reenteremail=driver.findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[1]/form/div[1]/div[3]/div/div/div[1]/input"));
+		 reenteremail.sendKeys("akramkarish26@gmail.com"); 
+		 Thread.sleep(2000);
+		 
+		 //enter the password
+		 WebElement passwordfield=driver.findElement(By.xpath("//*[@id=\"password_step_input\"]"));
+		 passwordfield.sendKeys("12345Abc");
+		 Thread.sleep(2000);
+		 //select the value of the day
+		 WebElement dropdown=driver.findElement(By.xpath("//select[@id='day']"));
+		 Select selectobj=new Select(dropdown);
+		 selectobj.selectByValue("11");
+		 Thread.sleep(4000);
+		 
+		 //select the month
+		 WebElement dropdownmonth=driver.findElement(By.xpath("//select[@id='month']"));
+		 Select selectobjmonth=new Select(dropdownmonth);
+		 selectobjmonth.selectByValue("May"); 
+		 Thread.sleep(4000);
+		 
+		 //select the year
+		 WebElement dropdownyear=driver.findElement(By.xpath("//select[@id='year']"));
+		 Select selectobjyear=new Select(dropdownyear);
+		 selectobjyear.selectByValue("1985");
+		 Thread.sleep(2000);
+		 
+		 //select the gender
+		 WebElement radiobutton=driver.findElement(By.xpath("//label[normalize-space()='Female']"));
+		 radiobutton.click();
+		  Thread.sleep(2000);
+		 
+		  //click signup button
+		 WebElement signupbutton=driver.findElement(By.xpath("/html/body/div[3]/div[2]/div/div/div[2]/div/div/div[1]/form/div[1]/div[11]/button"));
+		 signupbutton.click();
+		 System.out.print("Facebook login page registered successfully....");
+		 
+		 driver.quit();	
+
+	}
+
+}
+
+2)	To automate Drag and drop operation using selenium Java
+Steps to be performed
+1.	Open the chrome browser
+2.	Navigate to the jQuery ui droppable website (https://jqueryui.com/droppable/#default) 
+3.	Find the source element with the text “Drag me my target” and the target element with text drop here
+4.	Perform the drag and drop operation from the source element to the target element.
+5.	Verify that the drag and drop operation is successful by checking the colour property of the target element.
+6.	Verify the text of the target element has changed to “Dropped!” after the drop.
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+public class Draganddrop {
+  
+  @BeforeClass
+  public void beforeClass() {
+	  
+	  //setup the path of chromedriver from local system
+		System.setProperty("WebDriver.chrome.driver", "E://driver//chromedriver.exe");
+		//Launch the chrome browser object
+		WebDriver driver=new ChromeDriver();
+		//Enter the website url
+		driver.get("https://jqueryui.com/droppable/");
+		//maximize the window
+		driver.manage().window().maximize();
+		
+		//delete cookies
+		driver.manage().deleteAllCookies();
+		Thread.sleep(2000);
+  }
+  @Test
+ public void draganddrop() {
+	  //driver.switchTo().frame("");
+	  WebElement drag=driver.findElement(By.id("draggable"));
+      WebElement drop=driver.findElement(By.id("droppable"));
+      //create instance class
+      Actions action=new Actions(driver);
+      action.dragAndDrop(drag, drop).build().perform();
+  }
+
+  @AfterClass
+  public void afterClass() {
+	  System.out.println("Dropped!")
+  }
+
+}
