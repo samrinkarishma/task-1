@@ -1,0 +1,121 @@
+   Task 13                               File Operation
+Task Description:
+Write a java program to write data to an excel file using Apache poi library
+1.	Create a new Excel workbook.
+2.	Create a new sheet with the name Sheet1
+3.	Write the following data to the sheet
+Column headers: Name Age Email
+Row 1: john Doe,30,john@test.com
+Row 2: jane doe,28,john@test.com
+Row 3: Bob smith,35,jacky@example.com
+Row 4: Swapnil,37,joe@example.com
+4.	Write a java program to write data to an excel file using apache poi library
+5.	Write a java program to read data from an excel file using apache poi library and print it in the console
+
+
+package excelconcept;
+import java.io.FileOutputStream;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Excelwriter {
+
+	public static void main(String[] args) {
+		
+		//create new file
+		
+
+		try(XSSFWorkbook workbook  = new XSSFWorkbook()){
+			Sheet sheet= workbook.createSheet("Sheet1");
+			Object[][] data= {
+					{"Name","Age","Email"},
+					{"john Doe",30,"John@test.com"},
+					{"Jane doe",26,"John@test.com"},
+					{"Bob smith",35,"jacky@example.com"},
+					{"Swapnil",37,"joe@example.com"}
+			};
+					int rowNum=0;
+					for(Object[] rowData:data) {
+						Row row= sheet.createRow(rowNum++);//new row in sheet1
+						int colNum=0;
+						for(Object field:rowData) {
+							Cell cell=row.createCell(colNum++);
+							//check type of data 
+							if(field instanceof String) {
+								((Cell) cell).setCellValue((String)field);
+							}else if(field instanceof Integer) {
+								((Cell) cell).setCellValue((Integer) field);
+							}
+						}
+						
+					}
+					try(FileOutputStream outputstream=new FileOutputStream("data.xlsx"))
+					{
+						workbook.write(outputstream);
+					}
+					
+					System.out.println("Data successfully written to file");
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+}
+
+5.	Write a java program to read data from an excel file using apache poi library and print it in the console
+
+
+package excelconcept;
+import java.io.FileInputStream;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class reader {
+
+	public static void main(String[] args) {
+		
+			//provide filename from where you want to read data
+			String filepath="data.xlsx";
+			
+			try {
+				//read the data from file 
+	          FileInputStream inpstream=new FileInputStream(filepath);
+			
+	          //create an object of WorkBook
+	          Workbook workbook=new XSSFWorkbook(inpstream);
+	          
+	           Sheet sheet=workbook.getSheetAt(0);    
+	           Row row=  sheet.getRow(1);//read second row data
+	           //enter cell to read
+	           Cell cell=row.getCell(0);
+	           
+	           if(cell.getCellType()==CellType.STRING) {
+	        	   System.out.println(cell.getStringCellValue());
+	           }else {
+	        	   System.out.println(cell.getNumericCellValue());
+
+	           }
+	           workbook.close();
+	           inpstream.close();
+	           
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		
+
+	}
+
+}
+
