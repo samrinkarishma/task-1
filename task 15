@@ -1,0 +1,121 @@
+task 21                                                    Windows and Frames
+Task Description:
+1)Write a selenium script to automate the following tasks:
+ 1. Open a new instance of the Chrome browser.
+ 2.Navigate to the URL https://the-internet.herokuapp.com/iframe
+3. Switch to the iframe using the iframe using css Selector or Xpath.
+4.Locate the “p” tag inside the iframe and and write the text “Hello People”
+5. Close the browser instance.
+
+package excelconcept;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeClass;
+
+import static org.testng.Assert.assertEquals;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+public class framrconcept {
+  WebDriver driver;
+  @BeforeClass
+  public void beforeClass() throws InterruptedException {
+	  WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();//launching driver
+		driver.get("https://the-internet.herokuapp.com/iframe");
+		Thread.sleep(2000);
+		//maximize window
+		driver.manage().window().maximize();
+		//delete cookies
+		driver.manage().deleteAllCookies();
+  }
+  @Test
+  public void f() throws InterruptedException {
+	 //locate an element id->entered into a frame
+	  WebElement iframeelement=driver.findElement(By.id("mce_0_ifr"));
+	  driver.switchTo().frame(iframeelement);//entered into frame
+	  //Target an element and write text
+	  WebElement ptag=driver.findElement(By.xpath("//body/p"));//absolute xpath
+	  ptag.clear();
+	  Thread.sleep(2000);
+	  ptag.sendKeys("Hello People");  
+	  //Move to default COntent window
+	  driver.switchTo().defaultContent();//move window to top level
+	  WebElement h3tag=driver.findElement(By.tagName("h3"));
+	  String result= h3tag.getText();
+	  System.out.println(result);
+	  assertEquals(result, "An iFrame containing the TinyMCE WYSIWYG Editor");
+	  Thread.sleep(2000);
+  }
+  
+  
+
+  @AfterClass
+  public void afterClass() {
+	  System.out.println("Browser terminated successfully");
+    driver.close();
+  }
+
+}
+
+2) Write a selenium script to automate the following task:
+ 1. Open a new instance of the Chrome browser.
+2. Navigate to the URL https://the-internet.herokuapp.com/windows
+3. Click the “Click Here” button to open a new window.
+4.Switch to the newly opened window.
+5. Verify that the text “New Window” is present on the page.
+6. Close the new window.
+7. Verify that the original window is active.
+8.  Close the browser instance.
+
+
+package excelconcept;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+
+public class Newwindow {
+	WebDriver driver;
+ 
+  @BeforeClass
+  public void beforeClass() throws InterruptedException {
+	  WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();//launching driver
+		driver.get("https://the-internet.herokuapp.com/windows");
+		Thread.sleep(2000);
+		//maximize window
+		driver.manage().window().maximize();
+		//delete cookies
+		driver.manage().deleteAllCookies();
+  }
+  @Test
+  public void f() {
+	  WebElement clickbutton=driver.findElement(By.xpath("//*[@id=\"content\"]/div/a"));//absolute xpath
+	  clickbutton.click();
+	  System.out.print("The newly window is displayed");
+	  }
+  @AfterClass
+  public void afterClass() {
+	  System.out.println("Browser terminated successfully");
+      driver.close();
+  }
+  
+
+}
+
