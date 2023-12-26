@@ -1,0 +1,137 @@
+                                         Selenium Web Component
+Task Description:
+1.	Write a selenium java script to automate the following scenario:
+•	Write the code to launch Chrome Driver ,maximize the window, and navigate to the https://jqueryui.com/datepicker/ URL
+•	Switch to the iframe that contains the date picker
+•	Write the code to select the next month from the date picker
+•	Write the code to select the date “22” from the date picker
+•	Close the browser window and quit the WebDriver instance
+•	Print the selected date on console as output.
+
+package excelconcept;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeClass;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+
+public class datepicker {
+  
+	 WebDriver driver;
+	
+	  @BeforeClass
+	  public void beforeClass() throws InterruptedException {
+		  WebDriverManager.chromedriver().setup();
+			driver=new ChromeDriver();//launching driver
+			driver.get("https://jqueryui.com/datepicker/");
+			Thread.sleep(2000);
+			//maximize window
+			driver.manage().window().maximize();
+			//delete cookies
+			driver.manage().deleteAllCookies();
+	  }
+	  @Test
+	  
+  public void date() throws InterruptedException {
+		  driver.switchTo().frame(0);
+	  WebElement date=driver.findElement(By.id("datepicker"));
+	  date.sendKeys("01/22/2024");
+	  System.out.println("the selected date is :" +date );
+	  }
+
+	  @AfterClass
+	  public void afterClass() {
+		  System.out.println("Browser terminated successfully");
+	      //driver.close();
+}
+}
+
+ 
+
+
+2. To automate Signup and Login process for https://www.guvi.in/
+Steps:
+•	Launch the website https://www.guvi.in/ using Selenium WebDriver.
+•	Locate the Signup button on the top right corner of the page and click on it.
+•	Fill in the signup form with required details like name ,email ,password ,etc.
+•	Click on the “Signup” button to submit the form.
+•	Wait for the page to load and verify that the user is registered successfully
+•	Locate the Login button on the top right corner of the page and click on it.
+•	Fill in the login form with the email and password used during registered
+•	Click on the “Login” button to submit the form
+•	Wait for the page to load and verify that the user is logged in successfully
+•	Close the browser.
+
+package excelconcept;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeClass;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+public class guvisignup {
+	WebDriver driver;
+	 @BeforeClass
+	  public void beforeClass() throws InterruptedException {
+		 
+			    WebDriverManager.chromedriver().setup();
+				driver=new ChromeDriver();//launching driver
+				driver.get("https://www.guvi.in/");
+				Thread.sleep(2000);
+				//maximize window
+				driver.manage().window().maximize();
+				//delete cookies
+				driver.manage().deleteAllCookies();
+	  }
+  @Test
+public void signup_page() throws InterruptedException {
+	  //clicking signup button
+	  driver.findElement(By.xpath("//*[@id=\"accountGroup\"]/ul/li[2]/a")).click();
+	  //Enter signup details
+	  driver.findElement(By.id("name")).sendKeys("Hyru");
+	  driver.findElement(By.id("email")).sendKeys("kamilabanu1016@gmail.com");
+	  Thread.sleep(2000);
+	  driver.findElement(By.id("password")).sendKeys("Samrin@26.");
+	  Thread.sleep(2000);
+	  driver.findElement(By.id("mobileNumber")).sendKeys("9698664864");
+	  Thread.sleep(2000);
+	  //after entering details 
+	  WebElement signupbtn= driver.findElement(By.xpath("//*[@id=\"mobile-sign\"]/a"));
+	  signupbtn.click();
+	  Thread.sleep(3000);
+	  System.out.println("user entered the details");
+	  //assert(true);
+  }
+	 
+	 public void login_page() throws InterruptedException {	 
+		 
+	 driver.findElement(By.xpath("//*[@id=\"sign-in-page\"]/section/div/div[2]/p/a")).click();
+	 Thread.sleep(2000);
+	 driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("kamilabanu1016@gmail.com");
+	 driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Samrin@26");
+	 driver.findElement(By.xpath("//*[@id=\"mobile-login\"]")).click();
+	 System.out.println("User logged in successfully");
+     ;
+	 }
+  @AfterClass
+  public void afterClass() {
+	 System.out.println("Browser terminated successfully");
+      driver.close();
+  }
+
+}
