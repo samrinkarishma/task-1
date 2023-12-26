@@ -1,0 +1,106 @@
+                       Dropdown & Synchronization
+Task Description:
+Write a selenium script to Automate Form using Webdriver wait:
+1.Go to the form page of phptravels.com at https://phptravels.com/demo/
+2.fill in the form details
+3. Add the logic for sum verification.
+4. Verify that the form is submitted successfully by checking the message displayed.
+5. Take a screenshot of the page after the form submission.
+
+package first;
+
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.BeforeClass;
+import java.io.File;
+import java.time.Duration;
+
+import javax.script.ScriptException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+
+public class travelspage {
+ WebDriver driver;
+  @BeforeClass
+  public void beforeClass() throws InterruptedException, ScriptException {
+	  WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();//launching driver
+		driver.get("https://phptravels.com/demo/");
+		Thread.sleep(2000);
+		//maximize window
+		driver.manage().window().maximize();
+		//delete cookies
+		driver.manage().deleteAllCookies();
+  }
+		@Test
+		  public void formdetails() throws Exception   {
+			//enter the form details
+		 driver.findElement(By.name("first_name")).sendKeys("Samrin");
+		 driver.findElement(By.name("last_name")).sendKeys("kari");
+		 driver.findElement(By.name("business_name")).sendKeys("samrin A");
+		 driver.findElement(By.name("email")).sendKeys("akramkarish26@gmail.com");
+		 //driver.findElement(By.id("demo")).click();
+		 Thread.sleep(2000);
+		 //captacha
+		WebElement element= driver.findElement(By.xpath("//*[@id=\"swup\"]/section[1]/div/div/div[1]/div/div/div/div/div/div/div/div[1]/div[4]/div[2]/div/h4"));
+		 String str = element.getText();
+
+		String s1= str.substring(0,1);
+		 String s2= str.substring(4,5);
+		 
+		 Integer i1= Integer.valueOf(s1);
+		 Integer i2=Integer.valueOf(s2);
+		 System.out.println("no1:"+i1+"no2:"+i2);
+		 Integer i=i1+i2;
+		 String ans=String.valueOf(i);
+		 element=driver.findElement(By.xpath("//input[@id='number']"));
+		 element.sendKeys(ans);
+		 //clicking submit
+		 WebElement submitbutton=driver.findElement(By.xpath("//*[@id=\"demo\"]"));
+		 WebDriverWait wait=new WebDriverWait(driver, Duration.ofMillis(10));
+	     wait.until(ExpectedConditions.elementToBeClickable(By.id("demo")));
+		  submitbutton.click();
+	    //dropdown scrolling
+		 JavascriptExecutor jse = (JavascriptExecutor)driver;
+		 jse.executeScript("scroll(0, 250)"); // if the element is on bottom.
+		 //takescreen shot
+		 travelspage.takeSnapShot(driver, "E://test.png") ; 
+		 
+		}
+	
+		public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+
+	        //Convert web driver object to TakeScreenshot
+	        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+
+	        //Call getScreenshotAs method to create image file
+	        File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+
+	        //Move image file to new destination
+	        File DestFile=new File(fileWithPath);
+
+	       //Copy file at destination
+	       FileUtils.copyFile(SrcFile, DestFile);
+	      
+
+	    }
+  
+  
+  @AfterClass
+  public void afterClass() {
+	 // driver.close();
+  }
+  }
+
